@@ -65,7 +65,7 @@ namespace Application.Services.EmployeeService
             return true;
         }
 
-        public async Task<EmployeeDto> UpdateEmployee(Employee employeeDto)
+        public async Task<EmployeeDto> UpdateEmployee(EmployeeDto employeeDto)
         {
             if (employeeDto == null)
                 throw new ArgumentNullException(nameof(employeeDto), "Product cannot be null.");
