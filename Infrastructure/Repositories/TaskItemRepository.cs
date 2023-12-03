@@ -23,6 +23,13 @@ namespace Infrastructure.Repositories
             return await _dbContext.TaskItems.ToListAsync();
         }
 
+        public async Task<List<TaskItem>> GetTaskItemsByEmployeeId(int employeeId)
+        {
+            return await _dbContext.TaskItems
+                .Where(ti => ti.EmployeeId == employeeId)
+                .ToListAsync();
+        }
+
         public async Task<TaskItem> AddTaskItem(TaskItem taskItem)
         {
             await _dbContext.AddAsync(taskItem);

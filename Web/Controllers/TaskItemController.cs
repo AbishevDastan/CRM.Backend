@@ -39,6 +39,17 @@ namespace Web.Controllers
             return Ok(taskItem);
         }
 
+        [HttpGet("{employeeId}/tasks-by-employee-id")]
+        public async Task<ActionResult<List<TaskItemDto>>> GetTaskItemsByEmployeeId(int employeeId)
+        {
+            var taskItems = await _taskItemService.GetTaskItemsByEmployeeId(employeeId);
+
+            if (taskItems == null)
+                return NotFound();
+
+            return Ok(taskItems);
+        }
+
         [HttpPost]
         public async Task<ActionResult<TaskItemDto>> AddTaskItem(TaskItemDto taskItemDto)
         {

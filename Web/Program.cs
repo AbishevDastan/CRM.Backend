@@ -29,15 +29,24 @@ builder.Services.AddTransient<ITaskItemService, TaskItemService>();
 // AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
+//CORS
+builder.Services.AddCors(options => options.AddPolicy(name: "Mini-CRM",
+    policy =>
+    {
+        policy.WithOrigins("https://localhost:4200", "http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    }));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mini-CRM"));
 }
+
+app.UseCors("Mini-CRM");
 
 app.UseHttpsRedirection();
 

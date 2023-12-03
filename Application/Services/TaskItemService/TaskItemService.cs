@@ -40,6 +40,16 @@ namespace Application.Services.TaskItemService
             return _mapper.Map<List<TaskItemDto>>(taskItems);
         }
 
+        public async Task<List<TaskItemDto>> GetTaskItemsByEmployeeId(int employeeId)
+        {
+            var taskItems = await _taskItemRepository.GetTaskItemsByEmployeeId(employeeId);
+
+            if (taskItems == null || taskItems.Count <= 0)
+                throw new InvalidOperationException("Tasks not found.");
+
+            return _mapper.Map<List<TaskItemDto>>(taskItems);
+        }
+
         public async Task<TaskItemDto> AddTaskItem(TaskItemDto taskItemDto)
         {
             if (taskItemDto == null)
