@@ -23,6 +23,29 @@ namespace Infrastructure.Repositories
             return await _dbContext.Employees.ToListAsync();
         }
 
+        public async Task<List<Employee>> SearchEmployees(string searchText)
+        {
+            return await _dbContext.Employees
+                .Where(e => e.FullName.ToLower().Contains(searchText.ToLower()))
+                .ToListAsync();
+        }
+
+        //public async Task<List<string>> GetEmployeeSearchSuggestions(string searchText)
+        //{
+        //    var items = await SearchItem(searchText);
+
+        //    List<string> result = new List<string>();
+
+        //    foreach (var item in items)
+        //    {
+        //        if (item.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase))
+        //        {
+        //            result.Add(item.Name);
+        //        }
+        //    }
+        //    return new List<string>(result);
+        //}
+
         public async Task<Employee> AddEmployee(Employee employee)
         {
             await _dbContext.AddAsync(employee);
@@ -44,10 +67,9 @@ namespace Infrastructure.Repositories
 
             if (dbEmployee != null)
             {
-                dbEmployee.Name = employee.Name;
-                dbEmployee.Surname = employee.Surname;
+                dbEmployee.FullName = employee.FullName;
                 dbEmployee.Position = employee.Position;
-                
+
                 await _dbContext.SaveChangesAsync();
                 return dbEmployee;
             }

@@ -39,15 +39,23 @@ namespace Application.Services.EmployeeService
             return _mapper.Map<List<EmployeeDto>>(employees);
         }
 
+        public async Task<List<EmployeeDto>> SearchEmployees(string searchText)
+        {
+            var result = await _employeeRepository.SearchEmployees(searchText);
+
+            if(result == null || result.Count <= 0)
+                throw new InvalidOperationException("Employees not found.");
+
+            return _mapper.Map<List<EmployeeDto>>(result);
+        }
+
         public async Task<EmployeeDto> AddEmployee(EmployeeDto employeeDto)
         {
             if (employeeDto == null)
                 throw new ArgumentNullException(nameof(employeeDto), "Product cannot be null.");
 
-            if (string.IsNullOrWhiteSpace(employeeDto.Name))
-                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(employeeDto.Name));
-            if (string.IsNullOrWhiteSpace(employeeDto.Surname))
-                throw new ArgumentException("Employee's surname cannot be empty or null.", nameof(employeeDto.Surname));
+            if (string.IsNullOrWhiteSpace(employeeDto.FullName))
+                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(employeeDto.FullName));
             if (string.IsNullOrWhiteSpace(employeeDto.Position))
                 throw new ArgumentException("Employee's position cannot be empty or null.", nameof(employeeDto.Position));
 
@@ -70,10 +78,8 @@ namespace Application.Services.EmployeeService
             if (employeeDto == null)
                 throw new ArgumentNullException(nameof(employeeDto), "Product cannot be null.");
 
-            if (string.IsNullOrWhiteSpace(employeeDto.Name))
-                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(employeeDto.Name));
-            if (string.IsNullOrWhiteSpace(employeeDto.Surname))
-                throw new ArgumentException("Employee's surname cannot be empty or null.", nameof(employeeDto.Surname));
+            if (string.IsNullOrWhiteSpace(employeeDto.FullName))
+                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(employeeDto.FullName));
             if (string.IsNullOrWhiteSpace(employeeDto.Position))
                 throw new ArgumentException("Employee's position cannot be empty or null.", nameof(employeeDto.Position));
 

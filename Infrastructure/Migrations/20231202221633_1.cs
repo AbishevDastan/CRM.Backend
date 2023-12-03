@@ -19,8 +19,7 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -54,12 +53,12 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "Id", "Name", "Position", "Surname" },
+                columns: new[] { "Id", "FullName", "Position" },
                 values: new object[,]
                 {
-                    { 1, "Дастан", "фулл-стэк разработчик", "Абишев" },
-                    { 2, "Диана", "менеджер проектов", "Левченко" },
-                    { 3, "Диас", "тестировщик", "Адамов" }
+                    { 1, "Дастан Абишев", "фулл-стэк разработчик" },
+                    { 2, "Диана Левченко", "менеджер проектов" },
+                    { 3, "Диас Адамов", "тестировщик" }
                 });
 
             migrationBuilder.CreateIndex(

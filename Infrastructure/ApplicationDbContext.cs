@@ -17,9 +17,9 @@ namespace Infrastructure
 
             modelBuilder.Entity<Employee>()
                 .HasData(
-                    new Employee { Id = 1, Name = "Дастан", Surname = "Абишев", Position = "фулл-стэк разработчик" },
-                    new Employee { Id = 2, Name = "Диана", Surname = "Левченко", Position = "менеджер проектов" },
-                    new Employee { Id = 3, Name = "Диас", Surname = "Адамов", Position = "тестировщик" }
+                    new Employee { Id = 1, FullName = "Дастан Абишев", Position = "фулл-стэк разработчик" },
+                    new Employee { Id = 2, FullName = "Диана Левченко", Position = "менеджер проектов" },
+                    new Employee { Id = 3, FullName = "Диас Адамов", Position = "тестировщик" }
                 );
         }
 

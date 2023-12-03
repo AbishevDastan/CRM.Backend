@@ -30,15 +30,11 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -50,23 +46,20 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Дастан",
-                            Position = "фулл-стэк разработчик",
-                            Surname = "Абишев"
+                            FullName = "Дастан Абишев",
+                            Position = "фулл-стэк разработчик"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Диана",
-                            Position = "менеджер проектов",
-                            Surname = "Левченко"
+                            FullName = "Диана Левченко",
+                            Position = "менеджер проектов"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Диас",
-                            Position = "тестировщик",
-                            Surname = "Адамов"
+                            FullName = "Диас Адамов",
+                            Position = "тестировщик"
                         });
                 });
 

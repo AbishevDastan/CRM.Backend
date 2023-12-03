@@ -6,6 +6,7 @@ namespace Domain.Abstractions
     {
         Task<Employee> GetEmployee(int id);
         Task<List<Employee>> GetEmployees();
+        Task<List<Employee>> SearchEmployees(string searchText);
         Task<Employee> AddEmployee(Employee employee);
         Task<Employee> UpdateEmployee(Employee employee);
         Task DeleteEmployee(int id);

@@ -17,7 +17,7 @@ namespace Web.Controllers
             _employeeService = employeeService;
         }
 
-        [HttpGet]
+        [HttpGet("employees")]
         public async Task<ActionResult<List<EmployeeDto>>> GetEmployees()
         {
             var employees = await _employeeService.GetEmployees();
@@ -37,6 +37,17 @@ namespace Web.Controllers
                 return NotFound();
 
             return Ok(employee);
+        }
+
+        [HttpGet("{searchText}/search")]
+        public async Task<ActionResult<List<EmployeeDto>>> SearchEmployees(string searchText)
+        {
+            var result = await _employeeService.SearchEmployees(searchText);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
         }
 
         [HttpPost]
