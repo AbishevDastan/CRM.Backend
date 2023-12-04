@@ -2,6 +2,7 @@
 using Application.UseCases.Employee;
 using Application.UseCases.TaskItem;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
@@ -18,6 +19,7 @@ namespace Web.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<TaskItemDto>>> GetTaskItems()
         {
             var taskItems = await _taskItemService.GetTaskItems();
@@ -29,6 +31,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<TaskItemDto>> GetTaskItem(int id)
         {
             var taskItem = await _taskItemService.GetTaskItem(id);
@@ -40,6 +43,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{employeeId}/tasks-by-employee-id")]
+        [Authorize]
         public async Task<ActionResult<List<TaskItemDto>>> GetTaskItemsByEmployeeId(int employeeId)
         {
             var taskItems = await _taskItemService.GetTaskItemsByEmployeeId(employeeId);
@@ -51,6 +55,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{employeeId}/count")]
+        [Authorize]
         public async Task<ActionResult<int>> GetEmployeeTasksCount(int employeeId)
         {
             var employeeTaskItemsCount = await _taskItemService.GetEmployeeTasksCount(employeeId);
@@ -62,6 +67,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<TaskItemDto>> AddTaskItem(TaskItemDto taskItemDto)
         {
             var result = await _taskItemService.AddTaskItem(taskItemDto);
@@ -73,6 +79,7 @@ namespace Web.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<TaskItemDto>> UpdateTaskItem(TaskItemDto taskItemDto)
         {
             var result = await _taskItemService.UpdateTaskItem(taskItemDto);
@@ -84,6 +91,7 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<bool>> DeleteTaskItem(int id)
         {
             var result = await _taskItemService.DeleteTaskItem(id);

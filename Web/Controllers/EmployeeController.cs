@@ -18,6 +18,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("employees")]
+        [Authorize]
         public async Task<ActionResult<List<EmployeeDto>>> GetEmployees()
         {
             var employees = await _employeeService.GetEmployees();
@@ -29,6 +30,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<EmployeeDto>> GetEmployee(int id)
         {
             var employee = await _employeeService.GetEmployee(id);
@@ -40,6 +42,7 @@ namespace Web.Controllers
         }
 
         [HttpGet("{searchText}/search")]
+        [Authorize]
         public async Task<ActionResult<List<EmployeeDto>>> SearchEmployees(string searchText)
         {
             var result = await _employeeService.SearchEmployees(searchText);
@@ -51,6 +54,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<EmployeeDto>> AddEmployee(EmployeeDto employeeDto)
         {
             var result = await _employeeService.AddEmployee(employeeDto);
@@ -62,6 +66,7 @@ namespace Web.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<EmployeeDto>> UpdateEmployee(EmployeeDto employeeDto)
         {
             var result = await _employeeService.UpdateEmployee(employeeDto);
@@ -73,6 +78,7 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<bool>> DeleteEmployee(int id)
         {
             var result = await _employeeService.DeleteEmployee(id);

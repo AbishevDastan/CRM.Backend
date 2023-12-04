@@ -14,6 +14,7 @@ namespace Infrastructure
 
             new EmployeeConfiguration().Configure(modelBuilder.Entity<Employee>());
             new TaskItemConfiguration().Configure(modelBuilder.Entity<TaskItem>());
+            new AdminConfiguration().Configure(modelBuilder.Entity<Admin>());
 
             modelBuilder.Entity<Employee>()
                 .HasData(
@@ -25,5 +26,6 @@ namespace Infrastructure
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<TaskItem> TaskItems { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }
