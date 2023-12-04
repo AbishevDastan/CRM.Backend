@@ -50,6 +50,17 @@ namespace Web.Controllers
             return Ok(taskItems);
         }
 
+        [HttpGet("{employeeId}/count")]
+        public async Task<ActionResult<int>> GetEmployeeTasksCount(int employeeId)
+        {
+            var employeeTaskItemsCount = await _taskItemService.GetEmployeeTasksCount(employeeId);
+
+            if (employeeTaskItemsCount <= 0)
+                return NotFound();
+
+            return Ok(employeeTaskItemsCount);
+        }
+
         [HttpPost]
         public async Task<ActionResult<TaskItemDto>> AddTaskItem(TaskItemDto taskItemDto)
         {

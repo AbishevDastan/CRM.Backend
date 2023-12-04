@@ -50,6 +50,11 @@ namespace Application.Services.TaskItemService
             return _mapper.Map<List<TaskItemDto>>(taskItems);
         }
 
+        public async Task<int> GetEmployeeTasksCount(int employeeId)
+        {
+            return await _taskItemRepository.GetEmployeeTasksCount(employeeId);
+        }
+
         public async Task<TaskItemDto> AddTaskItem(TaskItemDto taskItemDto)
         {
             if (taskItemDto == null)

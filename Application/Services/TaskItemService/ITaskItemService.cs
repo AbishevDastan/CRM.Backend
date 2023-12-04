@@ -7,6 +7,7 @@ namespace Application.Services.TaskItemService
         Task<TaskItemDto> GetTaskItem(int id);
         Task<List<TaskItemDto>> GetTaskItems();
         Task<List<TaskItemDto>> GetTaskItemsByEmployeeId(int employeeId);
+        Task<int> GetEmployeeTasksCount(int employeeId);
         Task<TaskItemDto> AddTaskItem(TaskItemDto taskItemDto);
         Task<TaskItemDto> UpdateTaskItem(TaskItemDto taskItemDto);
         Task<bool> DeleteTaskItem(int id);

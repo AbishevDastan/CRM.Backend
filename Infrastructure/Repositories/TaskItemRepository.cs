@@ -30,6 +30,13 @@ namespace Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<int> GetEmployeeTasksCount(int employeeId)
+        {
+            return _dbContext.TaskItems
+                .Where(ti => ti.EmployeeId == employeeId)
+                .Count();
+        }
+
         public async Task<TaskItem> AddTaskItem(TaskItem taskItem)
         {
             await _dbContext.AddAsync(taskItem);
