@@ -65,17 +65,17 @@ namespace Application.Services.TaskItemService
             return await _taskItemRepository.GetEmployeeTasksCount(employeeId);
         }
 
-        public async Task<TaskItemDto> AddTaskItem(TaskItemDto taskItemDto)
+        public async Task<TaskItemDto> AddTaskItem(AddTaskItemDto addTaskItemDto)
         {
-            if (taskItemDto == null)
-                throw new ArgumentNullException(nameof(taskItemDto), "Task cannot be null.");
+            if (addTaskItemDto == null)
+                throw new ArgumentNullException(nameof(addTaskItemDto), "Task cannot be null.");
 
-            if (string.IsNullOrWhiteSpace(taskItemDto.Title))
-                throw new ArgumentException("Task's title cannot be empty or null.", nameof(taskItemDto.Title));
-            if (string.IsNullOrWhiteSpace(taskItemDto.Description))
-                throw new ArgumentException("Task's description cannot be empty or null.", nameof(taskItemDto.Description));
+            if (string.IsNullOrWhiteSpace(addTaskItemDto.Title))
+                throw new ArgumentException("Task's title cannot be empty or null.", nameof(addTaskItemDto.Title));
+            if (string.IsNullOrWhiteSpace(addTaskItemDto.Description))
+                throw new ArgumentException("Task's description cannot be empty or null.", nameof(addTaskItemDto.Description));
 
-            var addedTaskItem = await _taskItemRepository.AddTaskItem(_mapper.Map<TaskItem>(taskItemDto));
+            var addedTaskItem = await _taskItemRepository.AddTaskItem(_mapper.Map<TaskItem>(addTaskItemDto));
 
             return _mapper.Map<TaskItemDto>(addedTaskItem);
         }
@@ -89,17 +89,17 @@ namespace Application.Services.TaskItemService
             return true;
         }
 
-        public async Task<TaskItemDto> UpdateTaskItem(TaskItemDto taskItemDto)
+        public async Task<TaskItemDto> UpdateTaskItem(UpdateTaskItemDto updateTaskItemDto, int id)
         {
-            if (taskItemDto == null)
-                throw new ArgumentNullException(nameof(taskItemDto), "Task cannot be null.");
+            if (updateTaskItemDto == null)
+                throw new ArgumentNullException(nameof(updateTaskItemDto), "Task cannot be null.");
 
-            if (string.IsNullOrWhiteSpace(taskItemDto.Title))
-                throw new ArgumentException("Task's title cannot be empty or null.", nameof(taskItemDto.Title));
-            if (string.IsNullOrWhiteSpace(taskItemDto.Description))
-                throw new ArgumentException("Task's description cannot be empty or null.", nameof(taskItemDto.Description));
+            if (string.IsNullOrWhiteSpace(updateTaskItemDto.Title))
+                throw new ArgumentException("Task's title cannot be empty or null.", nameof(updateTaskItemDto.Title));
+            if (string.IsNullOrWhiteSpace(updateTaskItemDto.Description))
+                throw new ArgumentException("Task's description cannot be empty or null.", nameof(updateTaskItemDto.Description));
 
-            var updatedTaskItem = await _taskItemRepository.UpdateTaskItem(_mapper.Map<TaskItem>(taskItemDto));
+            var updatedTaskItem = await _taskItemRepository.UpdateTaskItem(_mapper.Map<TaskItem>(updateTaskItemDto), id);
 
             return _mapper.Map<TaskItemDto>(updatedTaskItem);
         }

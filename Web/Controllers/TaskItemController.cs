@@ -80,9 +80,9 @@ namespace Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<TaskItemDto>> AddTaskItem(TaskItemDto taskItemDto)
+        public async Task<ActionResult<TaskItemDto>> AddTaskItem(AddTaskItemDto addTaskItemDto)
         {
-            var result = await _taskItemService.AddTaskItem(taskItemDto);
+            var result = await _taskItemService.AddTaskItem(addTaskItemDto);
 
             if (result == null)
                 return NotFound();
@@ -90,11 +90,11 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [Authorize]
-        public async Task<ActionResult<TaskItemDto>> UpdateTaskItem(TaskItemDto taskItemDto)
+        public async Task<ActionResult<TaskItemDto>> UpdateTaskItem(UpdateTaskItemDto updateTaskItemDto, int id)
         {
-            var result = await _taskItemService.UpdateTaskItem(taskItemDto);
+            var result = await _taskItemService.UpdateTaskItem(updateTaskItemDto, id);
 
             if (result == null)
                 return NotFound();

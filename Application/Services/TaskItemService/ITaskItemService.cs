@@ -10,8 +10,8 @@ namespace Application.Services.TaskItemService
         Task<List<TaskItemDto>> GetTaskItemsByEmployeeId(int employeeId);
         Task<List<TaskItemDto>> GetOverdueTaskItems();
         Task<int> GetEmployeeTasksCount(int employeeId);
-        Task<TaskItemDto> AddTaskItem(TaskItemDto taskItemDto);
-        Task<TaskItemDto> UpdateTaskItem(TaskItemDto taskItemDto);
+        Task<TaskItemDto> AddTaskItem(AddTaskItemDto updateTaskItemDto);
+        Task<TaskItemDto> UpdateTaskItem(UpdateTaskItemDto addTaskItemDto, int id);
         Task<bool> DeleteTaskItem(int id);
     }
 }

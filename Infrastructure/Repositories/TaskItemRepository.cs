@@ -59,9 +59,9 @@ namespace Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<TaskItem> UpdateTaskItem(TaskItem taskItem)
+        public async Task<TaskItem> UpdateTaskItem(TaskItem taskItem, int id)
         {
-            var dbTaskItem = await GetTaskItem(taskItem.Id);
+            var dbTaskItem = await GetTaskItem(id);
 
             if (dbTaskItem != null)
             {

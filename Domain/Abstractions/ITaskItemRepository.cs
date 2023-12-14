@@ -10,7 +10,7 @@ namespace Domain.Abstractions
         Task<List<TaskItem>> GetOverdueTaskItems();
         Task<int> GetEmployeeTasksCount(int employeeId);
         Task<TaskItem> AddTaskItem(TaskItem taskItem);
-        Task<TaskItem> UpdateTaskItem(TaskItem taskItem);
+        Task<TaskItem> UpdateTaskItem(TaskItem taskItem, int id);
         Task DeleteTaskItem(int id);
     }
 }
