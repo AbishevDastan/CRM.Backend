@@ -26,7 +26,7 @@ namespace Web.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<ActionResult<string>> Login(AuthenticateAdminDto request)
+        public async Task<ActionResult<TokenModel>> Login(AuthenticateAdminDto request)
         {
             var response = await _adminService.Login(request.Email, request.Password);
             return Ok(response);

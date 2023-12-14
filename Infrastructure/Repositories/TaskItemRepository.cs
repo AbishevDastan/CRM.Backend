@@ -30,6 +30,13 @@ namespace Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<List<TaskItem>> GetOverdueTaskItems()
+        {
+            return await _dbContext.TaskItems
+                .Where(ti => ti.DeadLine < DateTimeOffset.Now && ti.CompletionPercentage < 100)
+                .ToListAsync();
+        }
+
         public async Task<int> GetEmployeeTasksCount(int employeeId)
         {
             return _dbContext.TaskItems

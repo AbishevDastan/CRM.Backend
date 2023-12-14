@@ -30,22 +30,6 @@ namespace Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        //public async Task<List<string>> GetEmployeeSearchSuggestions(string searchText)
-        //{
-        //    var items = await SearchItem(searchText);
-
-        //    List<string> result = new List<string>();
-
-        //    foreach (var item in items)
-        //    {
-        //        if (item.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase))
-        //        {
-        //            result.Add(item.Name);
-        //        }
-        //    }
-        //    return new List<string>(result);
-        //}
-
         public async Task<Employee> AddEmployee(Employee employee)
         {
             await _dbContext.AddAsync(employee);
@@ -61,9 +45,9 @@ namespace Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Employee> UpdateEmployee(Employee employee)
+        public async Task<Employee> UpdateEmployee(Employee employee, int id)
         {
-            var dbEmployee = await GetEmployee(employee.Id);
+            var dbEmployee = await GetEmployee(id);
 
             if (dbEmployee != null)
             {

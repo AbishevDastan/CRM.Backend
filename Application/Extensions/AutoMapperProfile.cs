@@ -10,6 +10,10 @@ namespace Application.Extensions
         public AutoMapperProfile()
         {
             CreateMap<Employee, EmployeeDto>();
+            CreateMap<AddEmployeeDto, Employee>();
+            CreateMap<Employee, AddEmployeeDto>();
+            CreateMap<UpdateEmployeeDto, Employee>();
+            CreateMap<Employee, UpdateEmployeeDto>();
             CreateMap<EmployeeDto, Employee>();
             CreateMap<TaskItem, TaskItemDto>();
             CreateMap<TaskItemDto, TaskItem>();

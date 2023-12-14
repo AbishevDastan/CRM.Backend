@@ -55,9 +55,9 @@ namespace Web.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<EmployeeDto>> AddEmployee(EmployeeDto employeeDto)
+        public async Task<ActionResult<EmployeeDto>> AddEmployee(AddEmployeeDto addEmployeeDto)
         {
-            var result = await _employeeService.AddEmployee(employeeDto);
+            var result = await _employeeService.AddEmployee(addEmployeeDto);
 
             if (result == null)
                 return NotFound();
@@ -65,11 +65,11 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [Authorize]
-        public async Task<ActionResult<EmployeeDto>> UpdateEmployee(EmployeeDto employeeDto)
+        public async Task<ActionResult<EmployeeDto>> UpdateEmployee(UpdateEmployeeDto updateEmployeeDto, int id)
         {
-            var result = await _employeeService.UpdateEmployee(employeeDto);
+            var result = await _employeeService.UpdateEmployee(updateEmployeeDto, id);
 
             if (result == null)
                 return NotFound();

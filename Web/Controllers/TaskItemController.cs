@@ -42,7 +42,7 @@ namespace Web.Controllers
             return Ok(taskItem);
         }
 
-        [HttpGet("{employeeId}/tasks-by-employee-id")]
+        [HttpGet("{employeeId}/task-items-by-employee-id")]
         [Authorize]
         public async Task<ActionResult<List<TaskItemDto>>> GetTaskItemsByEmployeeId(int employeeId)
         {
@@ -52,6 +52,18 @@ namespace Web.Controllers
                 return NotFound();
 
             return Ok(taskItems);
+        }
+
+        [HttpGet("/overdue-task-items")]
+        [Authorize]
+        public async Task<ActionResult<List<TaskItemDto>>> GetOverdueTaskItems()
+        {
+            var overdueTaskItems = await _taskItemService.GetOverdueTaskItems();
+
+            if (overdueTaskItems == null)
+                return NotFound();
+
+            return Ok(overdueTaskItems);
         }
 
         [HttpGet("{employeeId}/count")]

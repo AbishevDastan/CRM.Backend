@@ -50,6 +50,16 @@ namespace Application.Services.TaskItemService
             return _mapper.Map<List<TaskItemDto>>(taskItems);
         }
 
+        public async Task<List<TaskItemDto>> GetOverdueTaskItems()
+        {
+            var overdueTaskItems = await _taskItemRepository.GetOverdueTaskItems();
+
+            if(overdueTaskItems == null || overdueTaskItems.Count <= 0) 
+                throw new InvalidOperationException("Просроченных заданий нет.");
+
+            return _mapper.Map<List<TaskItemDto>>(overdueTaskItems);
+        }
+
         public async Task<int> GetEmployeeTasksCount(int employeeId)
         {
             return await _taskItemRepository.GetEmployeeTasksCount(employeeId);

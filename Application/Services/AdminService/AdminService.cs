@@ -1,5 +1,6 @@
 ﻿using Application.AuthenticationHandlers.HashManager;
 using Application.AuthenticationHandlers.JwtManager;
+using Application.UseCases.Admin;
 using Domain.Abstractions;
 using Domain.Entities;
 
@@ -30,9 +31,9 @@ namespace Application.Services.AdminService
             return admin.Id;
         }
 
-        public async Task<string> Login(string email, string password)
+        public async Task<TokenModel> Login(string email, string password)
         {
-            var user  = await _adminRepository.GetAdminByEmail(email);
+            var user = await _adminRepository.GetAdminByEmail(email);
 
             if (user == null)
             {
@@ -44,7 +45,11 @@ namespace Application.Services.AdminService
             }
             else
             {
-                return _jwtManager.GenerateJwtToken(user);
+                return new TokenModel
+                {
+                    Token = _jwtManager.GenerateJwtToken(user),
+                    ExpiresAt = DateTimeOffset.UtcNow.AddHours(12)
+                };
             }
         }
     }

@@ -8,8 +8,8 @@ namespace Application.Services.EmployeeService
         Task<EmployeeDto> GetEmployee(int id);
         Task<List<EmployeeDto>> GetEmployees();
         Task<List<EmployeeDto>> SearchEmployees(string searchText);
-        Task<EmployeeDto> AddEmployee(EmployeeDto employeeDto);
-        Task<EmployeeDto> UpdateEmployee(EmployeeDto employeeDto);
+        Task<EmployeeDto> AddEmployee(AddEmployeeDto addEmployeeDto);
+        Task<EmployeeDto> UpdateEmployee(UpdateEmployeeDto updateEmployeeDto, int id);
         Task<bool> DeleteEmployee(int id);
     }
 }

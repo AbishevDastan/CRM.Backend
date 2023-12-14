@@ -49,17 +49,17 @@ namespace Application.Services.EmployeeService
             return _mapper.Map<List<EmployeeDto>>(result);
         }
 
-        public async Task<EmployeeDto> AddEmployee(EmployeeDto employeeDto)
+        public async Task<EmployeeDto> AddEmployee(AddEmployeeDto addEmployeeDto)
         {
-            if (employeeDto == null)
-                throw new ArgumentNullException(nameof(employeeDto), "Product cannot be null.");
+            if (addEmployeeDto == null)
+                throw new ArgumentNullException(nameof(addEmployeeDto), "Product cannot be null.");
 
-            if (string.IsNullOrWhiteSpace(employeeDto.FullName))
-                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(employeeDto.FullName));
-            if (string.IsNullOrWhiteSpace(employeeDto.Position))
-                throw new ArgumentException("Employee's position cannot be empty or null.", nameof(employeeDto.Position));
+            if (string.IsNullOrWhiteSpace(addEmployeeDto.FullName))
+                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(addEmployeeDto.FullName));
+            if (string.IsNullOrWhiteSpace(addEmployeeDto.Position))
+                throw new ArgumentException("Employee's position cannot be empty or null.", nameof(addEmployeeDto.Position));
 
-            var addedEmployee = await _employeeRepository.AddEmployee(_mapper.Map<Employee>(employeeDto));
+            var addedEmployee = await _employeeRepository.AddEmployee(_mapper.Map<Employee>(addEmployeeDto));
 
             return _mapper.Map<EmployeeDto>(addedEmployee);
         }
@@ -73,17 +73,17 @@ namespace Application.Services.EmployeeService
             return true;
         }
 
-        public async Task<EmployeeDto> UpdateEmployee(EmployeeDto employeeDto)
+        public async Task<EmployeeDto> UpdateEmployee(UpdateEmployeeDto updateEmployeeDto, int id)
         {
-            if (employeeDto == null)
-                throw new ArgumentNullException(nameof(employeeDto), "Product cannot be null.");
+            if (updateEmployeeDto == null)
+                throw new ArgumentNullException(nameof(updateEmployeeDto), "Product cannot be null.");
 
-            if (string.IsNullOrWhiteSpace(employeeDto.FullName))
-                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(employeeDto.FullName));
-            if (string.IsNullOrWhiteSpace(employeeDto.Position))
-                throw new ArgumentException("Employee's position cannot be empty or null.", nameof(employeeDto.Position));
+            if (string.IsNullOrWhiteSpace(updateEmployeeDto.FullName))
+                throw new ArgumentException("Employee's name cannot be empty or null.", nameof(updateEmployeeDto.FullName));
+            if (string.IsNullOrWhiteSpace(updateEmployeeDto.Position))
+                throw new ArgumentException("Employee's position cannot be empty or null.", nameof(updateEmployeeDto.Position));
 
-            var updatedEmployee = await _employeeRepository.UpdateEmployee(_mapper.Map<Employee>(employeeDto));
+            var updatedEmployee = await _employeeRepository.UpdateEmployee(_mapper.Map<Employee>(updateEmployeeDto), id);
 
             return _mapper.Map<EmployeeDto>(updatedEmployee);
         }
