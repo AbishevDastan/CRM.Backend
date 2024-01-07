@@ -4,6 +4,7 @@ using Application.Features.Employee.Commands.UpdateEmployee;
 using Application.Features.Employee.Queries.GetAllEmployees;
 using Application.Features.Employee.Queries.GetEmployeeDetails;
 using Application.Features.Employee.Queries.SearchEmployees;
+using Application.Features.Employee.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +28,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<EmployeeDetailsDto>> Get(int id)
+        public async Task<ActionResult<EmployeeDto>> Get(int id)
         {
             var employee = await _mediator.Send(new GetEmployeeDetailsQuery(id));
             return Ok(employee);

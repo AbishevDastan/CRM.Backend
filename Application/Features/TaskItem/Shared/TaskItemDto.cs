@@ -1,6 +1,6 @@
 ﻿namespace Application.Features.TaskItem.Shared
 {
-    public abstract class TaskItemDto
+    public class TaskItemDto
     {
         public int Id { get; set; }
         public string Content { get; set; } = string.Empty;
