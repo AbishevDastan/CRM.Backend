@@ -1,6 +1,6 @@
 ﻿using Application.Contracts.Persistence;
 using Application.Exceptions;
-using Application.Features.Employee.Queries.GetAllEmployees;
+using Application.Features.Employee.Shared;
 using AutoMapper;
 using MediatR;
 

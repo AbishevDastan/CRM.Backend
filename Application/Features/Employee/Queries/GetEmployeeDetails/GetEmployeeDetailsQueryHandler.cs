@@ -1,12 +1,13 @@
 ﻿using Application.Contracts.Persistence;
 using Application.Exceptions;
+using Application.Features.Employee.Shared;
 using AutoMapper;
 using MediatR;
 
 namespace Application.Features.Employee.Queries.GetEmployeeDetails
 {
     public class GetEmployeeDetailsQueryHandler : IRequestHandler<GetEmployeeDetailsQuery,
-        EmployeeDetailsDto>
+        EmployeeDto>
     {
         private readonly IMapper _mapper;
         private readonly IEmployeeRepository _employeeRepository;
@@ -18,7 +19,7 @@ namespace Application.Features.Employee.Queries.GetEmployeeDetails
             _employeeRepository = employeeRepository;
         }
 
-        public async Task<EmployeeDetailsDto> Handle(GetEmployeeDetailsQuery request,
+        public async Task<EmployeeDto> Handle(GetEmployeeDetailsQuery request,
             CancellationToken cancellationToken)
         {
             var validator = new GetEmployeeDetailsQueryValidator();
@@ -32,7 +33,7 @@ namespace Application.Features.Employee.Queries.GetEmployeeDetails
             if (employee == null)
                 throw new NotFoundException(nameof(Employee), request.Id);
 
-            return _mapper.Map<EmployeeDetailsDto>(employee);
+            return _mapper.Map<EmployeeDto>(employee);
         }
     }
 }

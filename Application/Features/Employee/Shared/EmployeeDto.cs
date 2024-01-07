@@ -1,6 +1,6 @@
-﻿namespace Application.Features.Employee.Queries.GetAllEmployees
+﻿namespace Application.Features.Employee.Shared
 {
-    public class EmployeeDto
+    public abstract class EmployeeDto
     {
         public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;
