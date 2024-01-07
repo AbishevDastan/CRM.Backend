@@ -2,6 +2,7 @@
 using Application.Features.TaskItem.Commands.DeleteTaskItem;
 using Application.Features.TaskItem.Commands.UpdateTaskItem;
 using Application.Features.TaskItem.Queries.GetAllTaskItems;
+using Application.Features.TaskItem.Queries.GetEmployeeTaskItemsCount;
 using Application.Features.TaskItem.Queries.GetTaskItemDetails;
 using Application.Features.TaskItem.Queries.GetTaskItemsByEmployeeId;
 using MediatR;
@@ -37,6 +38,13 @@ namespace Api.Controllers
         {
             var taskItem = await _mediator.Send(new GetTaskItemDetailsQuery(id));
             return Ok(taskItem);
+        }
+
+        [HttpGet("{employeeId}/get-count-by-employee-id")]
+        public async Task<ActionResult<int>> GetCountByEmployeeId(int employeeId)
+        {
+            var taskItemsCount = await _mediator.Send(new GetEmployeeTaskItemsCountQuery(employeeId));
+            return Ok(taskItemsCount);
         }
 
         [HttpPost]

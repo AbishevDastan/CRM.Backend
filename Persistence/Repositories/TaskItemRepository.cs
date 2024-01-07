@@ -18,5 +18,12 @@ namespace Infrastructure.Repositories
                 .Where(ti => ti.EmployeeId == employeeId)
                 .ToListAsync();
         }
+
+        public async Task<int> GetEmployeeTaskItemsCount(int employeeId)
+        {
+            var employeeTaskItems = await GetTaskItemsByEmployeeId(employeeId);
+
+            return employeeTaskItems.Count();
+        }
     }
 }
