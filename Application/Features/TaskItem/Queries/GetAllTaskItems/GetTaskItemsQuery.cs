@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Features.TaskItem.Shared;
+using MediatR;
 
 namespace Application.Features.TaskItem.Queries.GetAllTaskItems
 {

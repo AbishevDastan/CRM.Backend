@@ -1,5 +1,5 @@
 ﻿using Application.Contracts.Persistence;
-using Application.Features.TaskItem.Queries.GetAllTaskItems;
+using Application.Features.TaskItem.Shared;
 using AutoMapper;
 using MediatR;
 

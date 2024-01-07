@@ -5,6 +5,7 @@ using Application.Features.TaskItem.Queries.GetAllTaskItems;
 using Application.Features.TaskItem.Queries.GetEmployeeTaskItemsCount;
 using Application.Features.TaskItem.Queries.GetTaskItemDetails;
 using Application.Features.TaskItem.Queries.GetTaskItemsByEmployeeId;
+using Application.Features.TaskItem.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,7 +35,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}/get-by-id")]
-        public async Task<ActionResult<TaskItemDetailsDto>> Get(int id)
+        public async Task<ActionResult<TaskItemDto>> Get(int id)
         {
             var taskItem = await _mediator.Send(new GetTaskItemDetailsQuery(id));
             return Ok(taskItem);

@@ -1,11 +1,12 @@
 ﻿using Application.Contracts.Persistence;
 using Application.Exceptions;
+using Application.Features.TaskItem.Shared;
 using AutoMapper;
 using MediatR;
 
 namespace Application.Features.TaskItem.Queries.GetTaskItemDetails
 {
-    public class GetTaskItemDetailsQueryHandler : IRequestHandler<GetTaskItemDetailsQuery, TaskItemDetailsDto>
+    public class GetTaskItemDetailsQueryHandler : IRequestHandler<GetTaskItemDetailsQuery, TaskItemDto>
     {
         private readonly IMapper _mapper;
         private readonly ITaskItemRepository _taskItemRepository;
@@ -17,7 +18,7 @@ namespace Application.Features.TaskItem.Queries.GetTaskItemDetails
             _taskItemRepository = taskItemRepository;
         }
 
-        public async Task<TaskItemDetailsDto> Handle(GetTaskItemDetailsQuery request, CancellationToken cancellationToken)
+        public async Task<TaskItemDto> Handle(GetTaskItemDetailsQuery request, CancellationToken cancellationToken)
         {
             var validator = new GetTaskItemDetailsQueryValidator();
             var validationResult = await validator.ValidateAsync(request);
@@ -30,7 +31,7 @@ namespace Application.Features.TaskItem.Queries.GetTaskItemDetails
             if (taskItem == null)
                 throw new NotFoundException(nameof(Domain.TaskItem), request.Id);
 
-            return _mapper.Map<TaskItemDetailsDto>(taskItem);
+            return _mapper.Map<TaskItemDto>(taskItem);
         }
     }
 }
